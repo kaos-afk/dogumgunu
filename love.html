@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌸 Zeynep-chan'ın Doğum Günü! 🌸</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(45deg, #ff9a9e, #fecfef, #fecfef, #ff9a9e);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .sakura {
+            position: fixed;
+            color: #ffb6c1;
+            font-size: 20px;
+            animation: sakuraFall 8s linear infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            position: relative;
+            z-index: 10;
+        }
+
+        .initial-screen {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 30px;
+            padding: 50px;
+            margin: 50px 0;
+            box-shadow: 0 30px 60px rgba(255, 105, 180, 0.3);
+            backdrop-filter: blur(15px);
+            border: 3px solid #ff69b4;
+        }
+
+        .anime-title {
+            font-size: 4rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff1493, #ff69b4, #ffc0cb);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
+            margin-bottom: 20px;
+            animation: titlePulse 2s ease-in-out infinite;
+        }
+
+        .kawaii-subtitle {
+            font-size: 1.8rem;
+            color: #ff1493;
+            margin-bottom: 30px;
+            font-weight: 600;
+        }
+
+        .warning-button {
+            background: linear-gradient(45deg, #ff1493, #ff69b4);
+            color: white;
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 15px 30px rgba(255, 20, 147, 0.4);
+            transition: all 0.3s ease;
+            animation: buttonWiggle 2s ease-in-out infinite;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        .warning-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 20px 40px rgba(255, 20, 147, 0.6);
+        }
+
+        .warning-text {
+            margin-top: 20px;
+            font-size: 1.2rem;
+            color: #ff1493;
+            font-weight: 600;
+            animation: blink 1.5s ease-in-out infinite;
+        }
+
+        .surprise-screen {
+            display: none;
+            background: rgba(255, 255, 255, 0.98);
+            border-radius: 30px;
+            padding: 40px;
+            margin: 20px 0;
+            box-shadow: 0 30px 60px rgba(255, 105, 180, 0.4);
+            backdrop-filter: blur(15px);
+            border: 3px solid #ff69b4;
+            animation: surpriseEntry 1s ease-out;
+        }
+
+        .boom-title {
+            font-size: 5rem;
+            font-weight: 800;
+            color: #ff1493;
+            text-shadow: 0 0 20px rgba(255, 20, 147, 0.8);
+            margin-bottom: 30px;
+            animation: explode 0.8s ease-out;
+        }
+
+        .birthday-message-anime {
+            background: linear-gradient(135deg, #ffb6c1, #ffc0cb, #ffb6c1);
+            border-radius: 25px;
+            padding: 30px;
+            margin: 30px 0;
+            box-shadow: 0 20px 40px rgba(255, 182, 193, 0.3);
+            line-height: 1.8;
+            font-size: 1.3rem;
+            color: #8b008b;
+            text-align: left;
+            border: 2px solid #ff69b4;
+            font-weight: 600;
+        }
+
+        .heart-anime {
+            color: #ff1493;
+            font-size: 1.8rem;
+            animation: heartbeatAnime 1s ease-in-out infinite;
+            display: inline-block;
+        }
+
+        .anime-characters {
+            font-size: 4rem;
+            display: inline-block;
+            animation: characterBounce 2s ease-in-out infinite;
+            margin: 0 15px;
+        }
+
+        .anime-characters:nth-child(2) { animation-delay: 0.3s; }
+        .anime-characters:nth-child(3) { animation-delay: 0.6s; }
+        .anime-characters:nth-child(4) { animation-delay: 0.9s; }
+
+        .sparkle-big {
+            position: fixed;
+            pointer-events: none;
+            font-size: 30px;
+            animation: sparkleBig 2s linear infinite;
+            z-index: 5;
+        }
+
+        .final-message {
+            background: linear-gradient(45deg, #ff69b4, #ff1493);
+            color: white;
+            border-radius: 20px;
+            padding: 25px;
+            margin-top: 30px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes titlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes buttonWiggle {
+            0%, 100% { transform: rotate(0deg); }
+            25% { transform: rotate(-5deg); }
+            75% { transform: rotate(5deg); }
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.3; }
+        }
+
+        @keyframes surpriseEntry {
+            0% { transform: scale(0) rotate(180deg); opacity: 0; }
+            100% { transform: scale(1) rotate(0deg); opacity: 1; }
+        }
+
+        @keyframes explode {
+            0% { transform: scale(0); }
+            70% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes heartbeatAnime {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes characterBounce {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        @keyframes sakuraFall {
+            0% {
+                transform: translateY(-100vh) translateX(0px) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes sparkleBig {
+            0% { opacity: 0; transform: scale(0) rotate(0deg); }
+            50% { opacity: 1; transform: scale(1.5) rotate(180deg); }
+            100% { opacity: 0; transform: scale(0) rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+            .anime-title { font-size: 2.5rem; }
+            .boom-title { font-size: 3rem; }
+            .kawaii-subtitle { font-size: 1.4rem; }
+            .birthday-message-anime { font-size: 1.1rem; padding: 20px; }
+            .warning-button { padding: 15px 30px; font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="initial-screen" id="initialScreen">
+            <h1 class="anime-title">🌸 Konnichiwa! 🌸</h1>
+            <h2 class="kawaii-subtitle">Özel bir sürpriz var ama...</h2>
+            
+            <div style="margin: 40px 0;">
+                <span class="anime-characters">🌸</span>
+                <span class="anime-characters">💕</span>
+                <span class="anime-characters">✨</span>
+                <span class="anime-characters">🎀</span>
+            </div>
+            
+            <button class="warning-button" id="surpriseButton">
+                🚫 SAKİN DOKUNMA! 🚫
+            </button>
+            
+            <p class="warning-text">
+                Bu butona dokunursan ne olacağını bilmiyorum... 👀
+            </p>
+        </div>
+
+        <div class="surprise-screen" id="surpriseScreen">
+            <h1 class="boom-title">💥 BOOM! 💥</h1>
+            
+            <div style="margin: 30px 0;">
+                <span class="anime-characters">🎂</span>
+                <span class="anime-characters">🎉</span>
+                <span class="anime-characters">🎈</span>
+                <span class="anime-characters">🌸</span>
+            </div>
+
+            <h2 style="font-size: 2.5rem; color: #ff1493; margin-bottom: 20px; animation: titlePulse 1.5s infinite;">
+                DOĞUM GÜNÜN KUTLU OLSUN ZEYNEP-CHAN! 🎂
+            </h2>
+
+            <div class="birthday-message-anime">
+                <p>
+                    <span class="heart-anime">💖</span> Zeynep güzelim, güzel kızım seni seviyorum unutma! 
+                    İntihar etmeye çalıştığımda uzaktan da olsa yanımdaydın. 
+                    Az önemli olsan da cidden iyi bir insansın. 
+                    O ismini unuttuğum gay mangalarına başlatacam seni diyorsun ama başlatamıyorsun hahahah! 
+                    Umarım bir gün karşılaşırız cüce! <span class="heart-anime">💖</span>
+                </p>
+            </div>
+
+            <div class="final-message">
+                🌟 Anime tadında bir doğum günü geçir! 🌟<br>
+                💫 Kawaii dostun seni seviyor! 💫
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sakura yaprakları
+        function createSakura() {
+            const sakura = document.createElement('div');
+            sakura.className = 'sakura';
+            sakura.innerHTML = '🌸';
+            sakura.style.left = Math.random() * 100 + '%';
+            sakura.style.animationDelay = Math.random() * 2 + 's';
+            sakura.style.animationDuration = (Math.random() * 5 + 5) + 's';
+            document.body.appendChild(sakura);
+            
+            setTimeout(() => {
+                sakura.remove();
+            }, 10000);
+        }
+
+        // Büyük sparkle efekti
+        function createBigSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.className = 'sparkle-big';
+            sparkle.innerHTML = ['✨', '💫', '⭐', '🌟'][Math.floor(Math.random() * 4)];
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                sparkle.remove();
+            }, 2000);
+        }
+
+        // Patlama efekti
+        function createExplosion() {
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    createBigSparkle(
+                        Math.random() * window.innerWidth,
+                        Math.random() * window.innerHeight
+                    );
+                }, i * 100);
+            }
+        }
+
+        // Süpriz butonu
+        document.getElementById('surpriseButton').addEventListener('click', function() {
+            // Patlama sesi simülasyonu (görsel efekt)
+            createExplosion();
+            
+            // Ekranları değiştir
+            setTimeout(() => {
+                document.getElementById('initialScreen').style.display = 'none';
+                document.getElementById('surpriseScreen').style.display = 'block';
+            }, 500);
+        });
+
+        // Mouse hareketiyle sparkle
+        document.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.95) {
+                createBigSparkle(e.clientX, e.clientY);
+            }
+        });
+
+        // Sayfa yüklendiğinde sakura
+        window.addEventListener('load', () => {
+            setInterval(createSakura, 1000);
+        });
+
+        // Butona hover efekti
+        document.getElementById('surpriseButton').addEventListener('mouseenter', function() {
+            this.style.animation = 'buttonWiggle 0.3s ease-in-out infinite';
+        });
+
+        document.getElementById('surpriseButton').addEventListener('mouseleave', function() {
+            this.style.animation = 'buttonWiggle 2s ease-in-out infinite';
+        });
+    </script>
+</body>
+</html>
